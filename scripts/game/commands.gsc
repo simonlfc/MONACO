@@ -5,8 +5,10 @@
 init()
 {
 	self endon( "disconnect" );
-	
-	self thread register_command( "giveweapon" );
+
+	self thread register_command( "ax50" );
+	self thread register_command( "hdr" );
+	self thread register_command( "swiss" );
 }
 
 register_command( command, detail )
@@ -15,14 +17,14 @@ register_command( command, detail )
 
 	self notifyOnPlayerCommand( command, command );
 	self setClientDvar( command, "[]" );
-	for ( ;; )
+	for(;;)
 	{
 		self waittill( command );
 		switch ( command )
 		{
-		case "giveweapon": 
-			self giveweapon_cmd( getDvar( "giveweapon" ) ); 
-			break;
+		case "ax50":			self giveweapon_cmd( "iw8_ax50_mp" );			break;
+		case "hdr":				self giveweapon_cmd( "iw8_hdr_mp" );			break;
+		case "swiss":			self giveweapon_cmd( "t9_swiss_mp" );			break;
 		}
 	}
 }
@@ -30,7 +32,7 @@ register_command( command, detail )
 
 giveweapon_cmd( weapon )
 {
-	foreach ( item in level.weaponList )
+	foreach( item in level.weaponList )
 	{
 		if ( item == weapon )
 		{
@@ -48,5 +50,5 @@ giveweapon_cmd( weapon )
 		}
 	}
 
-	self iPrintLn( "Weapon not found." );
+	self iPrintLn( weapon, " isn't precached, see init.gsc" );
 }	
