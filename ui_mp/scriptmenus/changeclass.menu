@@ -1,0 +1,66 @@
+#include "ui_mp/common/redux.inc"
+#include "ui/menudef.h"
+
+#define MENU_NAME					"changeclass"
+#define MENU_TITLE					"CHOOSE SNIPER"
+
+#define SNIPER_BUTTON_WRAPPER( idx, sniper_ref, sniper_name, sniper_desc, sniper_tex, sniper_origin ) \
+		REDUX_BUTTON( idx, sniper_name, scriptmenuresponse "select_sniper:"sniper_ref; ) \
+		CREATE_TEXT( _CHOICE_RECT( idx ), sniper_origin, 1 1 1 0.25, 1, textfont 0; textalignx 8; textaligny 5; textscale 0.2; textstyle 3; textalign ITEM_ALIGN_TOP_LEFT ) \
+		CREATE_SHADER_EX( _CHOICE_ORIGIN( idx ) 64 32 1 1, sniper_tex, 1 1 1 1, 1, origin 186 0 )
+
+menudef
+{
+	name 							MENU_NAME
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	REDUX_INGAME_MENU
+	onOpen
+	{
+		open MENU_NAME"_r";
+		lerp x "from" -200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		close MENU_NAME"_r";
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" -200 "over" 0.1;
+	}
+
+#undef _CHOICE_Y_TEXTALIGN
+#define _CHOICE_Y_TEXTALIGN 5
+
+//						   #	ref					name					desc					material				game
+	SNIPER_BUTTON_WRAPPER( 0, 	"s4_mosin", 		"3-Line Rifle", 		"is a gun bro", 		"hud_cheytac", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 1, 	"iw8_ax50", 		"AX-50", 				"is a gun bro", 		"hud_cheytac", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 2, 	"iw8_hdr", 			"HDR", 					"is a gun bro", 		"hud_cheytac", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 3, 	"iw8_kar98", 		"Kar98k", 				"is a gun bro", 		"hud_cheytac", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 4, 	"t9_tundra", 		"LW3 Tundra", 			"is a gun bro", 		"hud_cheytac", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 5, 	"t9_pellington", 	"Pellington 703", 		"is a gun bro", 		"hud_cheytac", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 6, 	"iw8_spr", 			"SP-R 208", 			"is a gun bro", 		"hud_cheytac", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 7, 	"t9_swiss", 		"Swiss K31", 			"is a gun bro", 		"hud_cheytac", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 8, 	"s4_type99", 		"Type 99", 				"is a gun bro", 		"hud_cheytac", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 9, 	"t9_zrg", 			"ZRG 20mm", 			"is a gun bro", 		"hud_cheytac", 			"COLD WAR" )
+}
+
+menudef
+{
+	name 							MENU_NAME"_r"
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	visible 						when ( menuisopen( MENU_NAME ) )
+	decoration
+	onOpen
+	{
+		lerp x "from" 200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" 200 "over" 0.1;
+	}
+
+	CREATE_SHADER( 0 0 854 480 0 0, "gradient_fadein", 0 0 0 0.4 )
+}

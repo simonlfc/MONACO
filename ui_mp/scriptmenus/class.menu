@@ -1,0 +1,55 @@
+#include "ui_mp/common/redux.inc"
+#include "ui/menudef.h"
+
+#define MENU_NAME					"class"
+#define MENU_TITLE					"MONACO SNIPING EXPERIENCE"
+
+menudef
+{
+	name 							MENU_NAME
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	REDUX_INGAME_MENU
+	onOpen
+	{
+		open MENU_NAME"_r";
+		lerp x "from" -200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		close MENU_NAME"_r";
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" -200 "over" 0.1;
+	}
+
+	REDUX_BUTTON( 0, "CHANGE SNIPER", CHANGE_CLASS_ACTION; )
+	REDUX_BUTTON_ALL( 1, "CHANGE TEAM", scriptmenuresponse "changeteam";, 1, ;, ;, !dvarBool( "ui_allow_teamchange" ) )
+	REDUX_SEPARATOR( 2 )
+	REDUX_BUTTON( 2.25, "GAME OPTIONS", close "self"; open "pc_options_video"; )
+	REDUX_BUTTON_VIS( 3.25, "END GAME", open "popup_endgame";, dvarBool( "sv_running" ) )
+	REDUX_BUTTON_VIS( 3.25, "LEAVE GAME", open "popup_leavegame";, !dvarBool( "sv_running" ) )
+	REDUX_BUTTON( 4.25, "QUIT TO DESKTOP", open "quit_popmenu"; )
+}
+
+menudef
+{
+	name 							MENU_NAME"_r"
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	visible 						when ( menuisopen( MENU_NAME ) )
+	decoration
+	onOpen
+	{
+		lerp x "from" 200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" 200 "over" 0.1;
+	}
+
+	CREATE_SHADER( 0 0 854 480 0 0, "gradient_fadein", 0 0 0 0.4 )
+	REDUX_GAME_WIDGET
+}

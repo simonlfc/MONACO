@@ -16,11 +16,8 @@ on_player_connect()
     for(;;)
     {
         level waittill( "connected", player );
-        
-        if ( player isTestClient() )
-            return;
-
-        player thread scripts\game\commands::init(); // REMOVE AFTER KEK
+            
+        player thread scripts\game\ui_callbacks::on_script_menu_response();
         player thread on_player_spawned();
     }
 }
@@ -51,10 +48,13 @@ ammo_regen()
 
 modify_player_damage( victim, eAttacker, iDamage, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc )
 {
-	if ( weaponClass( sWeapon ) == "sniper" || sWeapon == "throwingknife_mp" )
-		iDamage = 99999;
-    else
-        iDamage = 0;
+    if ( isPlayer( eAttacker ) )
+    {
+	    if ( weaponClass( sWeapon ) == "sniper" || sWeapon == "throwingknife_mp" )
+	    	iDamage = 99999;
+        else
+            iDamage = 0;
+    }
 
 	return int( iDamage );
 }

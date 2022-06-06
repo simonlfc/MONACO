@@ -1,0 +1,54 @@
+#include "ui_mp/common/redux.inc"
+#include "ui/menudef.h"
+
+#define MENU_NAME					"team_marinesopfor"
+#define MENU_TITLE					"CHANGE TEAM"
+
+menudef
+{
+	name 							MENU_NAME
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	REDUX_INGAME_MENU
+	onOpen
+	{
+		open MENU_NAME"_r";
+		lerp x "from" -200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		close MENU_NAME"_r";
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" -200 "over" 0.1;
+	}
+
+	REDUX_BUTTON_ALL( 0, "SPECTATOR", scriptmenuresponse "spectator";, 1, ;, ;, team( "name" ) == "TEAM_SPECTATOR" || !dvarbool( "scr_game_spectatetype" ) || !dvarBool( "ui_allow_teamchange" ) )
+	REDUX_SEPARATOR( 1 )
+	REDUX_BUTTON_ALL( 1.25, "@" + dvarstring( "g_TeamName_Axis" ), scriptmenuresponse "axis";, 1, ;, ;, team( "name" ) == "TEAM_AXIS" || !dvarBool( "ui_allow_teamchange" ) )
+	REDUX_BUTTON_ALL( 2.25, "@" + dvarstring( "g_TeamName_Allies" ), scriptmenuresponse "allies";, 1, ;, ;, team( "name" ) == "TEAM_ALLIES" || !dvarBool( "ui_allow_teamchange" ) )
+	REDUX_SEPARATOR( 3.25 )
+	REDUX_BUTTON_ALL( 3.5, "AUTO-ASSIGN", scriptmenuresponse "autoassign";, 1, ;, ;, !dvarBool( "ui_allow_teamchange" ) )
+}
+
+menudef
+{
+	name 							MENU_NAME"_r"
+	rect 							0 0 640 480 4 4
+	forecolor 						1 1 1 1
+	visible 						when ( menuisopen( MENU_NAME ) )
+	decoration
+	onOpen
+	{
+		lerp x "from" 200 "to" 0 "over" 0.1;
+		lerp alpha "from" 0 "to" 1 "over" 0.1;
+	}
+	onRequestClose
+	{
+		lerp alpha "from" 1 "to" 0 "over" 0.1;
+		lerp x "from" 0 "to" 200 "over" 0.1;
+	}
+
+	CREATE_SHADER( 0 0 854 480 0 0, "gradient_fadein", 0 0 0 0.4 )
+	REDUX_GAME_WIDGET
+}
