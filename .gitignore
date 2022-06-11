@@ -1,6 +1,5 @@
 *.stat
 *.log
-*.bat
 *.csv
 demos/
 logs/

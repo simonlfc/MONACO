@@ -3,8 +3,6 @@ MONACO
 
 Modern Warfare 2 +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
-The only gameplay changes made are disabling fall damage, and enabling unlimited sprint. Both can be changed in scripts\game\common.gsc to your liking.
-
 ### Sniper Rifles
 
 - [x] 3-Line Rifle (Vanguard)
@@ -20,5 +18,6 @@ The only gameplay changes made are disabling fall damage, and enabling unlimited
 
 
 ### Credits
-- Scobalula (Parasyte, Greyhound and probably a lot more)
+- Scobalula (Parasyte, Greyhound and pretty much every tool used to port weapons)
+- ThomasCat (Rig)
 - Mist

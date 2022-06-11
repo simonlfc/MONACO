@@ -12,6 +12,25 @@ init()
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
 	replaceFunc( maps\mp\gametypes\_class::trackRiotShield, ::null );													// I broke riot shields
 	replaceFunc( maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook );								// Intercept initial class choice and set our local team var
+	replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );								// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
+}
+
+get_score_info_value_hook( type )
+{
+	switch( type )
+	{
+	case "assist":
+		if ( level.teambased )
+			return 2;
+	case "headshot":
+	case "kill":
+		if ( level.teambased )
+			return 10;
+		else
+			return 5;
+	default:
+		return level.scoreInfo[type]["value"];
+	}
 }
 
 begin_class_choice_hook()
@@ -40,7 +59,7 @@ player_damage_hook( eInflictor, eAttacker, victim, iDamage, iDFlags, sMeansOfDea
 	if ( isDefined( level.hostMigrationTimer ) )
 		return;
 	
-	if ( sMeansOfDeath == "MOD_FALLING" && level.emitFallDamage )
+	if ( sMeansOfDeath == "MOD_FALLING" )
 		victim thread emitFallDamage( iDamage );
 		
 	if ( sMeansOfDeath == "MOD_EXPLOSIVE_BULLET" && iDamage != 1 )
