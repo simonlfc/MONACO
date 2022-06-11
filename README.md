@@ -9,12 +9,12 @@ Modern Warfare 2 +10 bolts-only sniper mod featuring weapons from the newest Cal
 - [x] AX-50 (Modern Warfare)
 - [x] HDR (Modern Warfare)
 - [x] Kar-98k (Modern Warfare)
-- [ ] LW3 Tundra (Cold War)
+- [x] LW3 Tundra (Cold War)
 - [ ] Pellington 703 (Cold War)
 - [x] SP-R 208 (Modern Warfare)
 - [x] Swiss K31 (Cold War)
 - [ ] Type 99 (Vanguard)
-- [ ] ZRG 20mm (Cold War)
+- [x] ZRG 20mm (Cold War)
 
 
 ### Credits

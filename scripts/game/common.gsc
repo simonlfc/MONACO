@@ -3,9 +3,7 @@
 #include maps\mp\gametypes\_hud_util;
 
 init()
-{    
-    level.onlineGame             = true;
-    level.rankedMatch            = true;
+{   
     level.modifyPlayerDamage     = ::modify_player_damage;
 
     setDvar( "player_sprintUnlimited", true );
