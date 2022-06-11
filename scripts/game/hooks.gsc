@@ -2,7 +2,7 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_damage;
 
-ALWAYS_GHILLIE = 0;
+ALWAYS_GHILLIE = 1;
 
 null(){}
 
@@ -521,7 +521,7 @@ give_loadout_hook( team, class, allowCopycat )
 	self.secondaryWeapon 	= secondaryName;
 	self.isSniper 			= true;
 
-	if ( ALWAYS_GHILLIE )
+	if ( ALWAYS_GHILLIE == 1 )
 		self maps\mp\gametypes\_teams::playerModelForWeapon( "cheytac", getBaseWeaponName( secondaryName ) );
 	else
 		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["sniper"], getBaseWeaponName( secondaryName ) );

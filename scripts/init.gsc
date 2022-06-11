@@ -6,7 +6,7 @@ init()
     level.weaponList[level.weaponList.size] = "iw8_hdr";
     level.weaponList[level.weaponList.size] = "iw8_kar98";
     level.weaponList[level.weaponList.size] = "t9_tundra";
-    level.weaponList[level.weaponList.size] = "t9_pellington";
+    level.weaponList[level.weaponList.size] = "t9_pelington";
     level.weaponList[level.weaponList.size] = "iw8_spr";
     level.weaponList[level.weaponList.size] = "t9_swiss";
     level.weaponList[level.weaponList.size] = "s4_type99";

@@ -37,7 +37,7 @@ menudef
 	SNIPER_BUTTON_WRAPPER( 2, 	"iw8_hdr", 			"HDR", 					"hud_icon_cheytac", 			"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 3, 	"iw8_kar98", 		"Kar98k", 				"hud_icon_cheytac", 			"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 4, 	"t9_tundra", 		"LW3 Tundra", 			"hud_icon_cheytac", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 5, 	"t9_pellington", 	"Pellington 703", 		"hud_icon_cheytac", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 5, 	"t9_pelington", 	"Pellington 703", 		"hud_icon_cheytac", 			"COLD WAR" )
 	SNIPER_BUTTON_WRAPPER( 6, 	"iw8_spr", 			"SP-R 208", 			"hud_icon_cheytac", 			"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 7, 	"t9_swiss", 		"Swiss K31", 			"hud_icon_cheytac", 			"COLD WAR" )
 	SNIPER_BUTTON_WRAPPER( 8, 	"s4_type99", 		"Type 99", 				"hud_icon_cheytac", 			"VANGUARD" )
