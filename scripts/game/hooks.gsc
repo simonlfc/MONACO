@@ -40,7 +40,7 @@ player_damage_hook( eInflictor, eAttacker, victim, iDamage, iDFlags, sMeansOfDea
 	if ( isDefined( level.hostMigrationTimer ) )
 		return;
 	
-	if ( sMeansOfDeath == "MOD_FALLING" )
+	if ( sMeansOfDeath == "MOD_FALLING" && level.emitFallDamage )
 		victim thread emitFallDamage( iDamage );
 		
 	if ( sMeansOfDeath == "MOD_EXPLOSIVE_BULLET" && iDamage != 1 )

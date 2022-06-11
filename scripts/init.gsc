@@ -1,7 +1,7 @@
 init()
 {
     level.weaponList = [];
-    level.weaponList[level.weaponList.size] = "s4_mosin";
+    level.weaponList[level.weaponList.size] = "s4_3line";
     level.weaponList[level.weaponList.size] = "iw8_ax50";
     level.weaponList[level.weaponList.size] = "iw8_hdr";
     level.weaponList[level.weaponList.size] = "iw8_kar98";

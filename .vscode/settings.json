@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "*.menu": "cpp",
-        "*.inc": "cpp"
+        "*.gsc": "gsc",
+        "*.menu": "c",
+        "*.inc": "c",
+        "**/weapons/mp/*": "log"
     }
 }

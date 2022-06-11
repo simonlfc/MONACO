@@ -8,6 +8,8 @@ init()
     level.rankedMatch            = true;
     level.modifyPlayerDamage     = ::modify_player_damage;
 
+    setDvar( "player_sprintUnlimited", true );
+
     level thread on_player_connect();
 }
 

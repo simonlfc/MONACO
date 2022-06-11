@@ -22,6 +22,8 @@ menudef
 		lerp alpha "from" 1 "to" 0 "over" 0.1;
 		lerp x "from" 0 "to" -200 "over" 0.1;
 	}
+	CREATE_TEXT( -50 -20 0 0 1 3, "Monaco Sniping Experience", 1 1 1 0.75, 1, textscale 0.25 textalign ITEM_ALIGN_MIDDLE_LEFT )
+	CREATE_TEXT( -50 -8 0 0 1 3, "github.com/simonlfc/MONACO", 1 1 1 0.5, 1, textscale 0.225 textalign ITEM_ALIGN_MIDDLE_LEFT )
 
 	REDUX_BUTTON( 0, "CHANGE SNIPER", close "self"; open "changesniper" )
 	REDUX_BUTTON_ALL( 1, "CHANGE TEAM", scriptmenuresponse "changeteam";, 1, ;, ;, !dvarBool( "ui_allow_teamchange" ) )

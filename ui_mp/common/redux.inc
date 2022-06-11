@@ -36,6 +36,7 @@
 			forecolor 		color \
 			exp 			text ( string ) \
 			visible 		when ( visibility ) \
+			textfont		UI_FONT_DEFAULT \
 			decoration \
 			extras \
 		}
