@@ -16,6 +16,8 @@ init()
     foreach ( weapon in level.weaponList )
         precacheItem( weapon + "_mp" );
 
+    precacheMenu( "changesniper" );
+    
 	thread scripts\game\hooks::init();
 	thread scripts\game\common::init();
 }

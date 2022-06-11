@@ -9,9 +9,24 @@ init()
 	replaceFunc( maps\mp\gametypes\_gamelogic::matchStartTimerPC, maps\mp\gametypes\_gamelogic::matchStartTimerSkip ); 	// Disable pre-match timer
     replaceFunc( maps\mp\gametypes\_weapons::init, ::init_weapons_hook ); 												// Let's not precache stuff we don't need here
     replaceFunc( maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook ); 											// Set up our custom class
-    replaceFunc( maps\mp\gametypes\_menus::menuClass, ::menu_class_hook ); 												// Intercept class UI response
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
-	replaceFunc( maps\mp\gametypes\_class::trackRiotShield, ::null );
+	replaceFunc( maps\mp\gametypes\_class::trackRiotShield, ::null );													// I broke riot shields
+	replaceFunc( maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook );								// Intercept initial class choice and set our local team var
+}
+
+begin_class_choice_hook()
+{
+	assert( self.pers["team"] == "axis" || self.pers["team"] == "allies" );
+
+	if ( self.pers["team"] == "axis" )
+		self openMenu( "initteam_opfor" );
+	else if ( self.pers["team"] == "allies" )
+		self openMenu( "initteam_marines" );
+		
+	self openPopupMenu( "changesniper" );
+	
+	if ( !isAlive( self ) )
+		self thread maps\mp\gametypes\_playerlogic::predictAboutToSpawnPlayerOverTime( 0.1 );
 }
 
 player_damage_hook( eInflictor, eAttacker, victim, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime )
@@ -442,46 +457,6 @@ player_damage_hook( eInflictor, eAttacker, victim, iDamage, iDFlags, sMeansOfDea
 	prof_end( "PlayerDamage log" );
 }
 
-menu_class_hook( response, valid_call )
-{
-    if ( !isDefined( valid_call ) || !isDefined( response ) || response != "class0" )
-        return;
-
-	self closeMenus();
-
-	if( !isDefined( self.pers["team"] ) || ( self.pers["team"] != "allies" && self.pers["team"] != "axis" ) )
-		return;
-
-	class   = self maps\mp\gametypes\_class::getClassChoice( response );
-	primary = self maps\mp\gametypes\_class::getWeaponChoice( response );
-
-	self.pers["class"] = class;
-	self.class = class;
-
-	if ( game["state"] == "postgame" )
-		return;
-
-	if ( self.sessionstate == "playing" )
-	{
-		if ( level.inGracePeriod && !self.hasDoneCombat ) // used weapons check?
-		{
-			self maps\mp\gametypes\_class::setClass( self.pers["class"] );
-			self.tag_stowed_back = undefined;
-			self.tag_stowed_hip  = undefined;
-			self maps\mp\gametypes\_class::giveLoadout( self.pers["team"], self.pers["class"] );
-		}
-		else
-			self iPrintLnBold( game["strings"]["change_class"] );
-	}
-	else
-	{	
-        if ( game["state"] == "playing" && !isInKillcam() )
-			self thread maps\mp\gametypes\_playerlogic::spawnClient();
-	}
-
-	self thread maps\mp\gametypes\_spectating::setSpectatePermissions();
-}
-
 give_loadout_hook( team, class, allowCopycat )
 {
 	self takeAllWeapons();
@@ -505,7 +480,7 @@ give_loadout_hook( team, class, allowCopycat )
 													"specialty_bulletaccuracy" );
 
 	// Primary Weapon
-	primaryName = self.pers["loadout_sniper"] + "_mp";
+	primaryName = self.pers["sniper"] + "_mp";
 	self _giveWeapon( primaryName );
 	self giveMaxAmmo( primaryName );
 	self setSpawnWeapon( primaryName );

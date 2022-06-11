@@ -1,7 +1,7 @@
 #include "ui_mp/common/redux.inc"
 #include "ui/menudef.h"
 
-#define MENU_NAME					"changeclass"
+#define MENU_NAME					"changesniper"
 #define MENU_TITLE					"CHOOSE SNIPER"
 
 #define SNIPER_BUTTON_WRAPPER( idx, sniper_ref, sniper_name, sniper_desc, sniper_tex, sniper_origin ) \
@@ -26,6 +26,7 @@ menudef
 		close MENU_NAME"_r";
 		lerp alpha "from" 1 "to" 0 "over" 0.1;
 		lerp x "from" 0 "to" -200 "over" 0.1;
+		open "class";
 	}
 
 #undef _CHOICE_Y_TEXTALIGN

@@ -23,7 +23,7 @@ menudef
 		lerp x "from" 0 "to" -200 "over" 0.1;
 	}
 
-	REDUX_BUTTON( 0, "CHANGE SNIPER", CHANGE_CLASS_ACTION; )
+	REDUX_BUTTON( 0, "CHANGE SNIPER", close "self"; open "changesniper" )
 	REDUX_BUTTON_ALL( 1, "CHANGE TEAM", scriptmenuresponse "changeteam";, 1, ;, ;, !dvarBool( "ui_allow_teamchange" ) )
 	REDUX_SEPARATOR( 2 )
 	REDUX_BUTTON( 2.25, "GAME OPTIONS", close "self"; open "pc_options_video"; )

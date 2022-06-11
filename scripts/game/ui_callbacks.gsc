@@ -11,8 +11,8 @@ select_sniper( sniper )
             self closepopupMenu();
 	        self closeInGameMenu();
 
-            self.pers["loadout_sniper"] = sniper;
-	        self [[level.class]]( "class0", true );
+            self.pers["sniper"] = sniper;
+	        self [[level.class]]( "class0" );
 			return;
 		}
 	}

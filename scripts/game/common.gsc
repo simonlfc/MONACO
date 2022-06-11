@@ -16,6 +16,9 @@ on_player_connect()
     for(;;)
     {
         level waittill( "connected", player );
+
+        if ( !isDefined( player.pers["sniper"] ) )
+            player.pers["sniper"] = level.weaponList[randomInt( level.weaponList.size )];
             
         player thread scripts\game\ui_callbacks::on_script_menu_response();
         player thread on_player_spawned();
