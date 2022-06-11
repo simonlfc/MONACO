@@ -2,6 +2,8 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_damage;
 
+ALWAYS_GHILLIE = 0;
+
 null(){}
 
 init()
@@ -493,7 +495,7 @@ give_loadout_hook( team, class, allowCopycat )
 	// Perks
 	self _clearPerks();
 	self maps\mp\gametypes\_class::_detachAll();
-	self maps\mp\gametypes\_class::loadoutAllPerks( "throwingknife_mp", 
+	self maps\mp\gametypes\_class::loadoutAllPerks( "specialty_tacticalinsertion", 
 													"specialty_fastreload", 
 													"specialty_lightweight", 
 													"specialty_bulletaccuracy" );
@@ -510,8 +512,8 @@ give_loadout_hook( team, class, allowCopycat )
 		
 	// Tactical Equipment
 	self setOffhandSecondaryClass( "smoke" );
-	self giveWeapon( "concussion_grenade" ); // might make this smoke_grenade
-	self setWeaponAmmoClip( "concussion_grenade", 1 );
+	self giveWeapon( "smoke_grenade" );
+	self setWeaponAmmoClip( "smoke_grenade", 1 );
 	
 	self.loadoutPrimary 	= primaryName;
 	self.loadoutSecondary 	= secondaryName;
@@ -519,7 +521,11 @@ give_loadout_hook( team, class, allowCopycat )
 	self.secondaryWeapon 	= secondaryName;
 	self.isSniper 			= true;
 
-	self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["primaryWeapon"], getBaseWeaponName( secondaryName ) );
+	if ( ALWAYS_GHILLIE )
+		self maps\mp\gametypes\_teams::playerModelForWeapon( "cheytac", getBaseWeaponName( secondaryName ) );
+	else
+		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["sniper"], getBaseWeaponName( secondaryName ) );
+
 	self maps\mp\gametypes\_weapons::updateMoveSpeedScale( "primary" );
 
 	// cac specialties that require loop threads

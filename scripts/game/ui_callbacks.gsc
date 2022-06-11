@@ -12,10 +12,13 @@ select_sniper( sniper )
 	        self closeInGameMenu();
 
             self.pers["sniper"] = sniper;
+            self.pers["class"] = "class1"; // an absolute bandaid
 	        self [[level.class]]( "class0" );
 			return;
 		}
 	}
+
+    printConsole( "Invalid sniper ", sniper, " for ", self.name );
 }
 
 on_script_menu_response()
