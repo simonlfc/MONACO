@@ -4,10 +4,23 @@
 #define MENU_NAME					"changesniper"
 #define MENU_TITLE					"CHANGE SNIPER"
 
-#define SNIPER_BUTTON_WRAPPER( idx, sniper_ref, sniper_name, sniper_tex, sniper_origin ) \
-		REDUX_BUTTON( idx, sniper_name, scriptmenuresponse "select_sniper:"sniper_ref; ) \
-		CREATE_TEXT( _CHOICE_RECT( idx ), sniper_origin, 1 1 1 0.25, 1, textfont 0; textalignx 8; textaligny 5; textscale 0.2; textstyle 3; textalign ITEM_ALIGN_TOP_LEFT ) \
-		CREATE_SHADER_EX( _CHOICE_ORIGIN( idx ) 64 32 1 1, sniper_tex, 1 1 1 1, !dvarBool( "gpad_enabled" ), origin 180 0 )
+#define SNIPER_BUTTON_WRAPPER( idx, page, sniper_ref, sniper_name, sniper_tex, sniper_origin ) \
+		REDUX_BUTTON_VIS( idx, sniper_name, scriptmenuresponse "select_sniper:"sniper_ref;, localVarInt( "ui_sniper_page" ) == page ) \
+		CREATE_TEXT( _CHOICE_RECT( idx ), sniper_origin, 1 1 1 0.25, localVarInt( "ui_sniper_page" ) == page, textfont 0; textalignx 8; textaligny 5; textscale 0.2; textstyle 3; textalign ITEM_ALIGN_TOP_LEFT ) \
+		CREATE_SHADER_EX( _CHOICE_ORIGIN( idx ) 64 32 1 1, sniper_tex, 1 1 1 1, !dvarBool( "gpad_enabled" ) && localVarInt( "ui_sniper_page" ) == page, origin 180 2 )
+
+#define SWITCH_PAGE \
+		if ( localVarInt( "ui_sniper_page" ) == 0 ) \
+		{ \
+			setLocalVarInt "ui_sniper_page" 1; \
+		} \
+		else \
+		{ \
+			if ( localVarInt( "ui_sniper_page" ) == 1 ) \
+			{ \
+				setLocalVarInt "ui_sniper_page" 0; \
+			} \
+		}
 
 menudef
 {
@@ -20,6 +33,7 @@ menudef
 		open MENU_NAME"_r";
 		lerp x "from" -200 "to" 0 "over" 0.1;
 		lerp alpha "from" 0 "to" 1 "over" 0.1;
+		setLocalVarInt "ui_sniper_page" 0;
 	}
 	onRequestClose
 	{
@@ -27,21 +41,38 @@ menudef
 		lerp alpha "from" 1 "to" 0 "over" 0.1;
 		lerp x "from" 0 "to" -200 "over" 0.1;
 	}
+	/* Uncomment this if you add a sniper to the second page.
+	REDUX_FOOTER_BUTTON( 1, "R", "button_y", "button_ps3_triangle", "Next Page", localVarInt( "ui_sniper_page" ) == 0 )
+	REDUX_FOOTER_BUTTON( 1, "R", "button_y", "button_ps3_triangle", "Previous Page", localVarInt( "ui_sniper_page" ) == 1 )
+	execKey "r"
+	{
+		SWITCH_PAGE;
+	}
+	execKeyInt 4
+	{
+		SWITCH_PAGE;
+	}
+	*/
 
 #undef _CHOICE_Y_TEXTALIGN
 #define _CHOICE_Y_TEXTALIGN 5
 
-//						   #	ref					name					material						game
-	SNIPER_BUTTON_WRAPPER( 0, 	"s4_3line", 		"3-Line Rifle", 		"hud_icon_cheytac", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 1, 	"iw8_ax50", 		"AX-50", 				"hud_icon_cheytac", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 2, 	"iw8_hdr", 			"HDR", 					"hud_icon_cheytac", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 3, 	"iw8_kar98", 		"Kar98k", 				"hud_icon_cheytac", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 4, 	"t9_tundra", 		"LW3 Tundra", 			"hud_icon_cheytac", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 5, 	"t9_pelington", 	"Pellington 703", 		"hud_icon_cheytac", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 6, 	"iw8_spr", 			"SP-R 208", 			"hud_icon_cheytac", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 7, 	"t9_swiss", 		"Swiss K31", 			"hud_icon_cheytac", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 8, 	"s4_type99", 		"Type 99", 				"hud_icon_cheytac", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 9, 	"t9_zrg", 			"ZRG 20mm", 			"hud_icon_cheytac", 			"COLD WAR" )
+//	First Page			   #    page	ref					name					material				game
+	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"s4_3line", 		"3-Line Rifle", 		"hud_3line", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"iw8_ax50", 		"AX-50", 				"hud_ax50", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"iw8_hdr", 			"HDR", 					"hud_hdr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"iw8_kar98", 		"Kar98k", 				"hud_kar98", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"t9_tundra", 		"LW3 Tundra", 			"hud_tundra", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"t9_pelington", 	"Pellington 703", 		"hud_pelington", 		"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"iw8_spr", 			"SP-R 208", 			"hud_spr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"t9_swiss", 		"Swiss K31", 			"hud_swiss", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"s4_type99", 		"Type 99", 				"hud_type99", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"t9_zrg", 			"ZRG 20mm", 			"hud_zrg", 				"COLD WAR" )
+	//SNIPER_BUTTON_WRAPPER( 10, 	0, 		"", 				"", 					"", 					"" )
+
+
+//	Second Page				 #      page	ref					name					material						game
+	//SNIPER_BUTTON_WRAPPER( 0, 	1, 		"", 				"", 					"", 							"" )
 }
 
 menudef

@@ -40,14 +40,22 @@
 			decoration \
 			extras \
 		}
-		
+
+#define FOOTER_COL( idx )			( ( idx - 0 - ( ( idx - 0 ) % 1 ) ) / 1 )
+#define FOOTER_X( idx ) 			( -52 + 70 * FOOTER_COL( idx ) )
+#define FOOTER_Y 					463
+#define FOOTER_ORIGIN( idx )		FOOTER_X( idx ) FOOTER_Y
+
+#define REDUX_FOOTER_BUTTON( idx, key_kb, key_xbox, key_ps, string, visibility ) \
+		CREATE_SHADER_ALT( FOOTER_ORIGIN( idx ) 14 14 1 0, key_ps, 1 1 1 1, visibility && dvarBool( "gpad_enabled" ) && dvarInt( "gpad_style" ) == 1, origin 0 0 ) \
+		CREATE_SHADER_ALT( FOOTER_ORIGIN( idx ) 14 14 1 0, key_xbox, 1 1 1 1, visibility && dvarBool( "gpad_enabled" ) && dvarInt( "gpad_style" ) == 0, origin 0 0 ) \
+		CREATE_SHADER_ALT( FOOTER_ORIGIN( idx ) 20 10 1 0, "white", 1 1 1 0.65, visibility && !dvarBool( "gpad_enabled" ), origin -5 2 ) \
+		CREATE_TEXT( FOOTER_ORIGIN( idx ) 20 10 1 0, key_kb, 0 0 0 1, visibility && !dvarBool( "gpad_enabled" ), textfont 6; textscale 0.2; textstyle 0; textalign ITEM_ALIGN_MIDDLE_CENTER; origin -5 2 ) \
+		CREATE_TEXT( FOOTER_ORIGIN( idx ) 0 10 1 0, string, 1 1 1 1, visibility, textscale 0.275; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT; textaligny -0.5; origin 20 2 )
+
 #define REDUX_BACK_WIDGET \
 		CREATE_SHADER( -68.5 460 284 20 1 0, "white", 0 0 0 1 ) \
-		CREATE_SHADER_VIS( -52 463 14 14 1 0, "button_ps3_circle", 1 1 1 1, dvarBool( "gpad_enabled" ) && dvarInt( "gpad_style" ) == 1 ) \
-		CREATE_SHADER_VIS( -52 463 14 14 1 0, "button_b", 1 1 1 1, dvarBool( "gpad_enabled" ) && dvarInt( "gpad_style" ) == 0 ) \
-		CREATE_SHADER_VIS( -57 465 20 10 1 0, "white", 1 1 1 0.65, !dvarBool( "gpad_enabled" ) ) \
-		CREATE_TEXT( -57 465 20 10 1 0, "ESC", 0 0 0 1, !dvarBool( "gpad_enabled" ), textfont 6; textscale 0.2; textstyle 0; textalign ITEM_ALIGN_MIDDLE_CENTER ) \
-		CREATE_TEXT( -68.5 460 284 20 1 0, "Back", 1 1 1 1, 1, textfont 0; textscale 0.275; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT; textalignx 36 )
+		REDUX_FOOTER_BUTTON( 0, "ESC", "button_b", "button_ps3_circle", "Back", 1 )
 
 #define REDUX_INGAME_MENU \
 		focuscolor 					1 1 1 1 \
@@ -61,7 +69,6 @@
 		CREATE_TEXT( -50 ( _CHOICE_Y_START - 17 ) 0 0 1 1, MENU_TITLE, 1 1 1 1, 1, textfont 9; textscale 0.35; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT ) \
 		CREATE_SHADER( -50 ( _CHOICE_Y_START - 7 ) 250 0.25 1 1, "white", 1 1 1 0.1 ) \
 		REDUX_BACK_WIDGET
-
 
 #define _CHOICE_GAMEPAD_Y			8 // getting lazy here :D
 #define _CHOICE_X_START				-50

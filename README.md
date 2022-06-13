@@ -3,6 +3,8 @@ MONACO
 
 +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
+Server hosters should divide their score limit by 10 if it's a kill-based gamemode (e.g. TDM 7500 should be 750, FFA 1500 should be 150) to match the +10 scores.
+
 Currently IW4x only but it's probably pretty straightforward to port it to Plutonium IW5.
 
 ### Sniper Rifles
@@ -15,7 +17,7 @@ Currently IW4x only but it's probably pretty straightforward to port it to Pluto
 - [x] Pellington 703 (Cold War)
 - [x] SP-R 208 (Modern Warfare)
 - [x] Swiss K31 (Cold War)
-- [ ] Type 99 (Vanguard)
+- [x] Type 99 (Vanguard)
 - [x] ZRG 20mm (Cold War)
 
 
