@@ -8,8 +8,11 @@ PLUS_10 			= 1;
 SKIP_PREMATCH		= 1;
 STACK_TIMER			= 1;
 
+null(){}
+
 init()
 {
+    replaceFunc( maps\mp\gametypes\_class::trackRiotShield, ::null ); 													// Why does the riot shield keep coming up
     replaceFunc( maps\mp\gametypes\_weapons::init, ::init_weapons_hook ); 												// Let's not precache stuff we don't need here
     replaceFunc( maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook ); 											// Set up our custom class
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
@@ -601,6 +604,7 @@ give_loadout_hook( team, class, allowCopycat )
 	self.primaryWeapon 		= primaryName;
 	self.secondaryWeapon 	= secondaryName;
 	self.isSniper 			= true;
+	self.hasRiotShield		= false;
 
 	if ( ALWAYS_GHILLIE == 1 )
 		self maps\mp\gametypes\_teams::playerModelForWeapon( "cheytac", secondaryName );
