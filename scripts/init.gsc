@@ -1,7 +1,7 @@
 init()
 {
-	level.weaponList = [];
-	level.weaponList[level.weaponList.size] = "3line";
+    level.weaponList = [];
+    level.weaponList[level.weaponList.size] = "3line";
     level.weaponList[level.weaponList.size] = "ax50";
     level.weaponList[level.weaponList.size] = "hdr";
     level.weaponList[level.weaponList.size] = "kar98";
@@ -15,11 +15,11 @@ init()
     level.weaponList[level.weaponList.size] = "smoke_grenade";
     level.weaponList[level.weaponList.size] = "deserteagle";
 
-	foreach ( weaponName in level.weaponList )
-		precacheItem( weaponName + "_mp" );
+    foreach (weaponName in level.weaponList)
+        precacheItem(weaponName + "_mp");
 
-    precacheMenu( "changesniper" );
-    
-	thread scripts\game\hooks::init();
-	thread scripts\game\common::init();
+    precacheMenu("changesniper");
+
+    thread scripts\game\hooks::init();
+    thread scripts\game\common::init();
 }
