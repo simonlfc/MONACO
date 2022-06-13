@@ -588,7 +588,7 @@ give_loadout_hook( team, class, allowCopycat )
 	self setSpawnWeapon( primaryName + "_mp" );
 
 	// Secondary Weapon
-	secondaryName = "usp";
+	secondaryName = "deserteagle";
 	self _giveWeapon( secondaryName + "_mp" );
 		
 	// Tactical Equipment

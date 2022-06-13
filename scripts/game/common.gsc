@@ -45,6 +45,10 @@ ammo_regen()
     {
         self waittill( "reload" );
         weapon = self getCurrentWeapon();
+
+        if ( weaponClass( weapon ) != "sniper" )
+            continue;
+
         self setWeaponAmmoStock( weapon, weaponMaxAmmo( weapon ) );
     }
 }
@@ -53,6 +57,9 @@ modify_player_damage( victim, eAttacker, iDamage, sMeansOfDeath, sWeapon, vPoint
 {
     if ( isPlayer( eAttacker ) )
     {
+        if ( sWeapon == "deserteagle_mp" )
+            return iDamage;
+
 	    if ( weaponClass( sWeapon ) == "sniper" || sWeapon == "throwingknife_mp" )
 	    	iDamage = 99999;
         else

@@ -13,7 +13,7 @@ init()
     level.weaponList[level.weaponList.size] = "zrg";
     level.weaponList[level.weaponList.size] = "flare";
     level.weaponList[level.weaponList.size] = "smoke_grenade";
-    level.weaponList[level.weaponList.size] = "usp";
+    level.weaponList[level.weaponList.size] = "deserteagle";
 
 	foreach ( weaponName in level.weaponList )
 		precacheItem( weaponName + "_mp" );
