@@ -2,7 +2,8 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_damage;
 
-ALWAYS_GHILLIE = 1;
+ALWAYS_GHILLIE  = 1;
+PLUS_10 		= 1;
 
 null(){}
 
@@ -12,9 +13,10 @@ init()
     replaceFunc( maps\mp\gametypes\_weapons::init, ::init_weapons_hook ); 												// Let's not precache stuff we don't need here
     replaceFunc( maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook ); 											// Set up our custom class
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
-	replaceFunc( maps\mp\gametypes\_class::trackRiotShield, ::null );													// I broke riot shields
 	replaceFunc( maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook );								// Intercept initial class choice and set our local team var
-	replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );								// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
+
+	if ( PLUS_10 == 1 )
+		replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );							// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
 }
 
 get_score_info_value_hook( type )
@@ -489,10 +491,11 @@ give_loadout_hook( team, class, allowCopycat )
 	// Action Slots
 	self _setActionSlot( 1, "" );
 	self _setActionSlot( 1, "nightvision" );
-	self _setActionSlot( 3, "" );
+	self _setActionSlot( 3, "altMode" );
 	self _setActionSlot( 4, "" );
 
 	// Perks
+	self setOffhandPrimaryClass( "other" );
 	self _clearPerks();
 	self maps\mp\gametypes\_class::_detachAll();
 	self maps\mp\gametypes\_class::loadoutAllPerks( "specialty_tacticalinsertion", 
@@ -501,19 +504,19 @@ give_loadout_hook( team, class, allowCopycat )
 													"specialty_bulletaccuracy" );
 
 	// Primary Weapon
-	primaryName = self.pers["sniper"] + "_mp";
-	self _giveWeapon( primaryName );
-	self giveMaxAmmo( primaryName );
-	self setSpawnWeapon( primaryName );
+	primaryName = self.pers["sniper"];
+	self _giveWeapon( primaryName + "_mp" );
+	self giveMaxAmmo( primaryName + "_mp" );
+	self setSpawnWeapon( primaryName + "_mp" );
 
 	// Secondary Weapon
-	secondaryName = "usp_mp";
-	self _giveWeapon( secondaryName );
+	secondaryName = "usp";
+	self _giveWeapon( secondaryName + "_mp" );
 		
 	// Tactical Equipment
 	self setOffhandSecondaryClass( "smoke" );
-	self giveWeapon( "smoke_grenade" );
-	self setWeaponAmmoClip( "smoke_grenade", 1 );
+	self giveWeapon( "smoke_grenade_mp" );
+	self setWeaponAmmoClip( "smoke_grenade_mp", 1 );
 	
 	self.loadoutPrimary 	= primaryName;
 	self.loadoutSecondary 	= secondaryName;
@@ -522,9 +525,9 @@ give_loadout_hook( team, class, allowCopycat )
 	self.isSniper 			= true;
 
 	if ( ALWAYS_GHILLIE == 1 )
-		self maps\mp\gametypes\_teams::playerModelForWeapon( "cheytac", getBaseWeaponName( secondaryName ) );
+		self maps\mp\gametypes\_teams::playerModelForWeapon( "cheytac", secondaryName );
 	else
-		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["sniper"], getBaseWeaponName( secondaryName ) );
+		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["sniper"], secondaryName );
 
 	self maps\mp\gametypes\_weapons::updateMoveSpeedScale( "primary" );
 
@@ -560,7 +563,6 @@ init_weapons_hook()
 			break;		
 	}
 
-	precacheItem( "flare_mp" );
 	precacheItem( "scavenger_bag_mp" );
 	precacheItem( "frag_grenade_short_mp" );	
 	precacheItem( "destructible_car" );
@@ -588,11 +590,9 @@ init_weapons_hook()
 	level.stow_priority_model_array = [];
 	level.stow_offset_array = [];
 	
-	max_weapon_num = 149;
-	for( i = 0; i < max_weapon_num; i++ )
+	foreach ( weapon in level.weaponList )
 	{
-		weapon = tableLookup( "mp/statsTable.csv", 0, i, 4 );
-		stow_model = tableLookup( "mp/statsTable.csv", 0, i, 9 );
+		stow_model = tableLookup( "mp/statsTable.csv", 4, weapon, 9 );
 		
 		if ( stow_model == "" )
 			continue;

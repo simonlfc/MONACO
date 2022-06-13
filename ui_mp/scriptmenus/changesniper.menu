@@ -57,17 +57,17 @@ menudef
 #undef _CHOICE_Y_TEXTALIGN
 #define _CHOICE_Y_TEXTALIGN 5
 
-//	First Page			   #    page	ref					name					material				game
-	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"s4_3line", 		"3-Line Rifle", 		"hud_3line", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"iw8_ax50", 		"AX-50", 				"hud_ax50", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"iw8_hdr", 			"HDR", 					"hud_hdr", 				"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"iw8_kar98", 		"Kar98k", 				"hud_kar98", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"t9_tundra", 		"LW3 Tundra", 			"hud_tundra", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"t9_pelington", 	"Pellington 703", 		"hud_pelington", 		"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"iw8_spr", 			"SP-R 208", 			"hud_spr", 				"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"t9_swiss", 		"Swiss K31", 			"hud_swiss", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"s4_type99", 		"Type 99", 				"hud_type99", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"t9_zrg", 			"ZRG 20mm", 			"hud_zrg", 				"COLD WAR" )
+//	First Page			   #    page	ref				name					material				game
+	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"3line", 		"3-Line Rifle", 		"hud_3line", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"ax50", 		"AX-50", 				"hud_ax50", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"hdr", 			"HDR", 					"hud_hdr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"kar98", 		"Kar98k", 				"hud_kar98", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"tundra", 		"LW3 Tundra", 			"hud_tundra", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"pelington", 	"Pellington 703", 		"hud_pelington", 		"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"spr", 			"SP-R 208", 			"hud_spr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"swiss", 		"Swiss K31", 			"hud_swiss", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"type99", 		"Type 99", 				"hud_type99", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"zrg", 			"ZRG 20mm", 			"hud_zrg", 				"COLD WAR" )
 	//SNIPER_BUTTON_WRAPPER( 10, 	0, 		"", 				"", 					"", 					"" )
 
 

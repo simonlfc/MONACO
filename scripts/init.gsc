@@ -1,20 +1,22 @@
 init()
 {
-    level.weaponList = [];
-    level.weaponList[level.weaponList.size] = "s4_3line";
-    level.weaponList[level.weaponList.size] = "iw8_ax50";
-    level.weaponList[level.weaponList.size] = "iw8_hdr";
-    level.weaponList[level.weaponList.size] = "iw8_kar98";
-    level.weaponList[level.weaponList.size] = "t9_tundra";
-    level.weaponList[level.weaponList.size] = "t9_pelington";
-    level.weaponList[level.weaponList.size] = "iw8_spr";
-    level.weaponList[level.weaponList.size] = "t9_swiss";
-    level.weaponList[level.weaponList.size] = "s4_type99";
-    level.weaponList[level.weaponList.size] = "t9_zrg";
+	level.weaponList = [];
+	level.weaponList[level.weaponList.size] = "3line";
+    level.weaponList[level.weaponList.size] = "ax50";
+    level.weaponList[level.weaponList.size] = "hdr";
+    level.weaponList[level.weaponList.size] = "kar98";
+    level.weaponList[level.weaponList.size] = "tundra";
+    level.weaponList[level.weaponList.size] = "pelington";
+    level.weaponList[level.weaponList.size] = "spr";
+    level.weaponList[level.weaponList.size] = "swiss";
+    level.weaponList[level.weaponList.size] = "type99";
+    level.weaponList[level.weaponList.size] = "zrg";
+    level.weaponList[level.weaponList.size] = "flare";
+    level.weaponList[level.weaponList.size] = "smoke_grenade";
     level.weaponList[level.weaponList.size] = "usp";
-    
-    foreach ( weapon in level.weaponList )
-        precacheItem( weapon + "_mp" );
+
+	foreach ( weaponName in level.weaponList )
+		precacheItem( weaponName + "_mp" );
 
     precacheMenu( "changesniper" );
     
