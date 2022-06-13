@@ -1,11 +1,11 @@
 MONACO
 ==========
 
-+10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
+IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
 Server hosters should divide their score limit by 10 if it's a kill-based gamemode (e.g. TDM 7500 should be 750, FFA 1500 should be 150) to match the +10 scores.
 
-Currently IW4x only but it's probably pretty straightforward to port it to Plutonium IW5.
+Server hosters can also toggle +10 mode, prematch period, and ghillie suits at the top of `scripts\game\hooks.gsc`.
 
 ### Sniper Rifles
 

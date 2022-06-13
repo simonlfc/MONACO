@@ -41,7 +41,9 @@ menudef
 		lerp alpha "from" 1 "to" 0 "over" 0.1;
 		lerp x "from" 0 "to" -200 "over" 0.1;
 	}
-	/* Uncomment this if you add a sniper to the second page.
+	/* 
+	--- uncomment this block if you add a sniper to the second page --- 
+
 	REDUX_FOOTER_BUTTON( 1, "R", "button_y", "button_ps3_triangle", "Next Page", localVarInt( "ui_sniper_page" ) == 0 )
 	REDUX_FOOTER_BUTTON( 1, "R", "button_y", "button_ps3_triangle", "Previous Page", localVarInt( "ui_sniper_page" ) == 1 )
 	execKey "r"
@@ -57,7 +59,7 @@ menudef
 #undef _CHOICE_Y_TEXTALIGN
 #define _CHOICE_Y_TEXTALIGN 5
 
-//	First Page			   #    page	ref				name					material				game
+//	page 1			   	   #    page	ref				name					material				game
 	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"3line", 		"3-Line Rifle", 		"hud_3line", 			"VANGUARD" )
 	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"ax50", 		"AX-50", 				"hud_ax50", 			"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"hdr", 			"HDR", 					"hud_hdr", 				"MODERN WARFARE" )
@@ -71,7 +73,7 @@ menudef
 	//SNIPER_BUTTON_WRAPPER( 10, 	0, 		"", 				"", 					"", 					"" )
 
 
-//	Second Page				 #      page	ref					name					material						game
+//	page 2				     #      page	ref					name					material						game
 	//SNIPER_BUTTON_WRAPPER( 0, 	1, 		"", 				"", 					"", 							"" )
 }
 
@@ -94,4 +96,5 @@ menudef
 	}
 
 	CREATE_SHADER( 0 0 854 480 0 0, "gradient_fadein", 0 0 0 0.4 )
+	REDUX_GAME_WIDGET
 }

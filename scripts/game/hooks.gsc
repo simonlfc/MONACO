@@ -2,21 +2,23 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_damage;
 
+// adjustable settings
 ALWAYS_GHILLIE  = 1;
 PLUS_10 		= 1;
-
-null(){}
+PREMATCH_TIMER	= 1;
 
 init()
 {
-	replaceFunc( maps\mp\gametypes\_gamelogic::matchStartTimerPC, maps\mp\gametypes\_gamelogic::matchStartTimerSkip ); 	// Disable pre-match timer
     replaceFunc( maps\mp\gametypes\_weapons::init, ::init_weapons_hook ); 												// Let's not precache stuff we don't need here
     replaceFunc( maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook ); 											// Set up our custom class
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
 	replaceFunc( maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook );								// Intercept initial class choice and set our local team var
 
-	if ( PLUS_10 == 1 )
-		replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );							// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
+	if ( PLUS_10 == 1 )																									// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
+		replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );
+		
+	if ( PREMATCH_TIMER == 1 )																							// Disable pre-match timer
+		replaceFunc( maps\mp\gametypes\_gamelogic::matchStartTimerPC, maps\mp\gametypes\_gamelogic::matchStartTimerSkip );
 }
 
 get_score_info_value_hook( type )

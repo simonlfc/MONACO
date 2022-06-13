@@ -150,6 +150,13 @@
 #define REDUX_SEPARATOR_VIS( idx, visibility ) \
 		CREATE_SHADER_VIS( _CHOICE_ORIGIN( idx ) 250 4 1 1, "gradient_center", 1 1 1 0.05; origin 0 0, visibility )
 
+#define INGAME_FACTION_ICON( pos, alpha ) \
+		CREATE_SHADER_VIS( pos, dvarstring( "g_TeamIcon_Allies" ), 1 1 1 alpha, localvarstring( "ui_team" ) == "marines" ) \
+		CREATE_SHADER_VIS( pos, dvarstring( "g_TeamIcon_Axis" ), 1 1 1 alpha, localvarstring( "ui_team" ) == "opfor" ) \
+		CREATE_SHADER_VIS( pos, dvarstring( "g_TeamIcon_Allies" ), 1 1 1 alpha, team( "name" ) == "TEAM_FREE" && localvarstring( "ui_team" ) == "marines" ) \
+		CREATE_SHADER_VIS( pos, dvarstring( "g_TeamIcon_Axis" ), 1 1 1 alpha, team( "name" ) == "TEAM_FREE" && localvarstring( "ui_team" ) == "opfor" )
+
+// yikes
 #define REDUX_GAME_WIDGET \
 		itemDef \
 		{ \
@@ -312,9 +319,10 @@
 			textscale 0.55 \
 			visible when ( !isEMPJammed() ) \
 		} \
-		CREATE_TEXT( 0 -2 640 480 2 0, getmapname(), 1 1 1 1, 1, textfont 0; textalignx 8; textscale 0.275; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT ) \
-		CREATE_TEXT( 0 0 640 480 2 0, gametypename(), 1 1 1 1, 1, textfont 0; textalignx 8; textscale 0.275; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT ) \
-		CREATE_TEXT( 0 20 640 480 2 0, gametypedescription(), 1 1 1 1, 1, textfont 0; textalignx 8; textscale 0.275; textstyle 3; textalign ITEM_ALIGN_MIDDLE_LEFT )
+		INGAME_FACTION_ICON( -90 -20 96 96 3 1, 0.2 ) \
+		CREATE_TEXT( 0 0 0 20 3 1, getMapName(), 1 1 1 1, 1, textfont 9; textalignx 8; textscale 0.35; textstyle 3; textalign ITEM_ALIGN_TOP_RIGHT ) \
+		CREATE_TEXT( 0 20 0 20 3 1, gametypeName(), 1 1 1 0.85, 1, textfont 6; textalignx 8; textscale 0.2; textstyle 3; textalign ITEM_ALIGN_TOP_RIGHT ) \
+		CREATE_TEXT( -150 35 150 40 3 1, gametypeDescription(), 1 1 1 0.65, 1, textfont 0; textalignx 8; textscale 0.275; textstyle 3; textalign ITEM_ALIGN_TOP_RIGHT )
 
 #define CHANGE_CLASS_ACTION	\
 		if ( localvarstring( "ui_team" ) == "marines" ) \
