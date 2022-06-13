@@ -3,6 +3,8 @@ MONACO
 
 IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
+Worked on this while I had some downtime on sm2.
+
 ### Customisation
 
 There are several game settings you can customise in `scripts\game\hooks.gsc`.
