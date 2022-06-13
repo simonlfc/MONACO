@@ -3,9 +3,10 @@
 #include maps\mp\gametypes\_damage;
 
 // adjustable settings
-ALWAYS_GHILLIE  = 1;
-PLUS_10 		= 1;
-PREMATCH_TIMER	= 1;
+ALWAYS_GHILLIE  	= 1;
+PLUS_10 			= 1;
+SKIP_PREMATCH		= 1;
+STACK_TIMER			= 1;
 
 init()
 {
@@ -13,12 +14,87 @@ init()
     replaceFunc( maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook ); 											// Set up our custom class
 	replaceFunc( maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook ); 					// Add damage callback
 	replaceFunc( maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook );								// Intercept initial class choice and set our local team var
+	replaceFunc( maps\mp\gametypes\_rank::scorePopup, ::score_popup_hook );												// Allow for stack timer customisation
+	replaceFunc( maps\mp\_events::updateRecentKills, ::update_recent_kills_hook );										// Allow for stack timer customisation
 
 	if ( PLUS_10 == 1 )																									// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
 		replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook );
 		
-	if ( PREMATCH_TIMER == 1 )																							// Disable pre-match timer
+	if ( SKIP_PREMATCH == 1 )																							// Disable pre-match timer
 		replaceFunc( maps\mp\gametypes\_gamelogic::matchStartTimerPC, maps\mp\gametypes\_gamelogic::matchStartTimerSkip );
+}
+
+update_recent_kills_hook( killId )
+{
+	self endon ( "disconnect" );
+	level endon ( "game_ended" );
+	
+	self notify ( "updateRecentKills" );
+	self endon ( "updateRecentKills" );
+	
+	self.recentKillCount++;
+	
+	wait ( STACK_TIMER );
+	
+	if ( self.recentKillCount > 1 )
+		self maps\mp\_events::multiKill( killId, self.recentKillCount );
+	
+	self.recentKillCount = 0;
+}
+
+score_popup_hook( amount, bonus, hudColor, glowAlpha )
+{
+	self endon( "disconnect" );
+	self endon( "joined_team" );
+	self endon( "joined_spectators" );
+
+	if ( amount == 0 )
+		return;
+
+	self notify( "scorePopup" );
+	self endon( "scorePopup" );
+
+	self.xpUpdateTotal += amount;
+	self.bonusUpdateTotal += bonus;
+
+	wait ( 0.05 );
+
+	if ( self.xpUpdateTotal < 0 )
+		self.hud_scorePopup.label = &"";
+	else
+		self.hud_scorePopup.label = &"MP_PLUS";
+
+	self.hud_scorePopup.color = hudColor;
+	self.hud_scorePopup.glowColor = hudColor;
+	self.hud_scorePopup.glowAlpha = glowAlpha;
+
+	self.hud_scorePopup setValue( self.xpUpdateTotal );
+	self.hud_scorePopup.alpha = 0.85;
+	self.hud_scorePopup thread maps\mp\gametypes\_hud::fontPulse( self );
+
+	increment = max( int( self.bonusUpdateTotal / 20 ), 1 );
+		
+	if ( self.bonusUpdateTotal )
+	{
+		while ( self.bonusUpdateTotal > 0 )
+		{
+			self.xpUpdateTotal += min( self.bonusUpdateTotal, increment );
+			self.bonusUpdateTotal -= min( self.bonusUpdateTotal, increment );
+			
+			self.hud_scorePopup setValue( self.xpUpdateTotal );
+			
+			wait ( 0.05 );
+		}
+	}	
+	else
+	{
+		wait ( STACK_TIMER );
+	}
+
+	self.hud_scorePopup fadeOverTime( 0.75 );
+	self.hud_scorePopup.alpha = 0;
+	
+	self.xpUpdateTotal = 0;		
 }
 
 get_score_info_value_hook( type )

@@ -3,9 +3,19 @@ MONACO
 
 IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
-Server hosters should divide their score limit by 10 if it's a kill-based gamemode (e.g. TDM 7500 should be 750, FFA 1500 should be 150) to match the +10 scores.
+### Customisation
 
-Server hosters can also toggle +10 mode, prematch period, and ghillie suits at the top of `scripts\game\hooks.gsc`.
+There are several game settings you can customise in `scripts\game\hooks.gsc`.
+
+- `ALWAYS_GHILLIE`
+    - Players will always use a Ghillie Suit. Only works when the map and its factions have a ghillie model available, otherwise defaults to regular models.
+- `PLUS_10`
+    - Classic COD4-style scoring. This does mean that the player/team needs 10x the score to win a game, and server hosters should adjust the score limit accordingly.
+- `SKIP_PREMATCH`
+    - Enable/disable the prematch timer.
+- `STACK_TIMER`
+    - Time before the score popup fades out. Set to 1 by default.
+
 
 ### Sniper Rifles
 
@@ -19,6 +29,13 @@ Server hosters can also toggle +10 mode, prematch period, and ghillie suits at t
 - [x] Swiss K31 (Cold War)
 - [x] Type 99 (Vanguard)
 - [x] ZRG 20mm (Cold War)
+
+
+### Known issues
+- Pelington 703 drop & raise animation issues
+- ADS fire left-hand animation issues
+- Kar-98k sling clips through the left hand
+- Dull materials in certain lighting
 
 
 ### Credits
