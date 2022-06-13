@@ -5,6 +5,10 @@ IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty ga
 
 Worked on this while I had some downtime on sm2.
 
+![LW3 Tundra](https://i.imgur.com/aQW158m.jpg)
+![3-Line Rifle](https://i.imgur.com/9JBVXDn.jpg)
+![Sniper Menu](https://i.imgur.com/MA4tXjy.png)
+
 ### Customisation
 
 There are several game settings you can customise in `scripts\game\hooks.gsc`.
