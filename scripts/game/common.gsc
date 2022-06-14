@@ -62,8 +62,6 @@ modify_player_damage(victim, eAttacker, iDamage, sMeansOfDeath, sWeapon, vPoint,
 
         if (weaponClass(sWeapon) == "sniper" || sWeapon == "throwingknife_mp")
             iDamage = 99999;
-        else
-            iDamage = 1;
     }
 
     return int(iDamage);

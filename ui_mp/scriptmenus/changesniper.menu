@@ -5,7 +5,7 @@
 #define MENU_TITLE					"CHANGE SNIPER"
 
 #define SNIPER_BUTTON_WRAPPER( idx, page, sniper_ref, sniper_name, sniper_tex, sniper_origin ) \
-		REDUX_BUTTON_VIS( idx, sniper_name, scriptmenuresponse "select_sniper:"sniper_ref;, localVarInt( "ui_sniper_page" ) == page ) \
+		REDUX_BUTTON_VIS( idx, "@" + sniper_name, scriptmenuresponse "select_sniper:"sniper_ref;, localVarInt( "ui_sniper_page" ) == page ) \
 		CREATE_TEXT( _CHOICE_RECT( idx ), sniper_origin, 1 1 1 0.25, localVarInt( "ui_sniper_page" ) == page, textfont 0; textalignx 8; textaligny 5; textscale 0.2; textstyle 3; textalign ITEM_ALIGN_TOP_LEFT ) \
 		CREATE_SHADER_EX( _CHOICE_ORIGIN( idx ) 64 32 1 1, sniper_tex, 1 1 1 1, !dvarBool( "gpad_enabled" ) && localVarInt( "ui_sniper_page" ) == page, origin 180 2 )
 
@@ -60,16 +60,16 @@ menudef
 #define _CHOICE_Y_TEXTALIGN 5
 
 //	page 1			   	   #    page	ref				name					material				game
-	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"3line", 		"3-Line Rifle", 		"hud_3line", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"ax50", 		"AX-50", 				"hud_ax50", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"hdr", 			"HDR", 					"hud_hdr", 				"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"kar98", 		"Kar98k", 				"hud_kar98", 			"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"tundra", 		"LW3 Tundra", 			"hud_tundra", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"pelington", 	"Pellington 703", 		"hud_pelington", 		"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"spr", 			"SP-R 208", 			"hud_spr", 				"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"swiss", 		"Swiss K31", 			"hud_swiss", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"type99", 		"Type 99", 				"hud_type99", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"zrg", 			"ZRG 20mm", 			"hud_zrg", 				"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 0, 	0, 		"3line", 		"WEAPON_3LINE", 		"hud_3line", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 1, 	0, 		"ax50", 		"WEAPON_AX50", 			"hud_ax50", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"hdr", 			"WEAPON_HDR", 			"hud_hdr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"kar98", 		"WEAPON_KAR98", 		"hud_kar98", 			"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"tundra", 		"WEAPON_TUNDRA", 		"hud_tundra", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"pelington", 	"WEAPON_PELINGTON", 	"hud_pelington", 		"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"spr", 			"WEAPON_SPR", 			"hud_spr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"swiss", 		"WEAPON_SWISS", 		"hud_swiss", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"type99", 		"WEAPON_TYPE99", 		"hud_type99", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"zrg", 			"WEAPON_ZRG", 			"hud_zrg", 				"COLD WAR" )
 	//SNIPER_BUTTON_WRAPPER( 10, 	0, 		"", 				"", 					"", 					"" )
 
 

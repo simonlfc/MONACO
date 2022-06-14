@@ -6,7 +6,7 @@
 ALWAYS_GHILLIE  	= 1;
 PLUS_10 			= 1;
 SKIP_PREMATCH		= 1;
-STACK_TIMER			= 1;
+STACK_TIMER			= 1.2;
 
 null() {}
 

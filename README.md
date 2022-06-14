@@ -3,7 +3,7 @@ MONACO
 
 IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
-Worked on this while I had some downtime on sm2.
+Server owners should use `-scriptablehttp` to receive console notifications about mod updates.
 
 ![LW3 Tundra](https://i.imgur.com/aQW158m.jpg)
 ![3-Line Rifle](https://i.imgur.com/9JBVXDn.jpg)
@@ -20,7 +20,7 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - `SKIP_PREMATCH`
     - Enable/disable the prematch timer.
 - `STACK_TIMER`
-    - Time before the score popup fades out. Set to 1 by default.
+    - Time before the score popup fades out. MW2 default is 1.
 
 
 ### Sniper Rifles
@@ -41,7 +41,7 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - Pelington 703 drop & raise animation issues
 - ADS fire left-hand animation issues
 - Kar-98k sling clips through the left hand
-- Dull materials in certain lighting
+- Segmented reload start missing initial bullet notetrack
 
 
 ### Credits
