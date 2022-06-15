@@ -12,18 +12,21 @@ null() {}
 
 init()
 {
-    replaceFunc(maps\mp\gametypes\_class::trackRiotShield, ::null); 													// Why does the riot shield keep coming up
-    replaceFunc(maps\mp\gametypes\_weapons::init, ::init_weapons_hook); 												// Let's not precache stuff we don't need here
-    replaceFunc(maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook); 											// Set up our custom class
-    replaceFunc(maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook); 					// Add damage callback
-    replaceFunc(maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook);								// Intercept initial class choice and set our local team var
-    replaceFunc(maps\mp\gametypes\_rank::scorePopup, ::score_popup_hook);												// Allow for stack timer customisation
-    replaceFunc(maps\mp\_events::updateRecentKills, ::update_recent_kills_hook);										// Allow for stack timer customisation
+    // uncomment this if you're using bot warfare!
+    //replaceFunc(maps\mp\bots\_bot_utility::botGiveLoadout, ::give_loadout_hook);
 
-    if (PLUS_10 == 1)																									// +10, I think its a timing issue with using registerScoreInfo and _rank::init() being called so I'll shithouse it
+    replaceFunc(maps\mp\gametypes\_class::trackRiotShield, ::null);
+    replaceFunc(maps\mp\gametypes\_weapons::init, ::init_weapons_hook);
+    replaceFunc(maps\mp\gametypes\_class::giveLoadout, ::give_loadout_hook);
+    replaceFunc(maps\mp\gametypes\_damage::Callback_PlayerDamage_internal, ::player_damage_hook);
+    replaceFunc(maps\mp\gametypes\_menus::beginClassChoice, ::begin_class_choice_hook);
+    replaceFunc(maps\mp\gametypes\_rank::scorePopup, ::score_popup_hook);
+    replaceFunc(maps\mp\_events::updateRecentKills, ::update_recent_kills_hook);
+     
+    if (PLUS_10 == 1)
         replaceFunc(maps\mp\gametypes\_rank::getScoreInfoValue, ::get_score_info_value_hook);
 
-    if (SKIP_PREMATCH == 1)																							// Disable pre-match timer
+    if (SKIP_PREMATCH == 1)
         replaceFunc(maps\mp\gametypes\_gamelogic::matchStartTimerPC, maps\mp\gametypes\_gamelogic::matchStartTimerSkip);
 }
 

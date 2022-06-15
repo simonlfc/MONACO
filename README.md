@@ -5,6 +5,8 @@ IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty ga
 
 Server owners should use `-scriptablehttp` to receive console notifications about mod updates.
 
+If you want to use Bot Warfare, go to `scripts\game\hooks.gsc` and remove the comment from line 16.
+
 ![LW3 Tundra](https://i.imgur.com/aQW158m.jpg)
 ![3-Line Rifle](https://i.imgur.com/9JBVXDn.jpg)
 ![Sniper Menu](https://i.imgur.com/MA4tXjy.png)
@@ -42,6 +44,7 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - ADS fire left-hand animation issues
 - Kar-98k sling clips through the left hand
 - Segmented reload start missing initial bullet notetrack
+- Missing some unique reticles
 
 
 ### Credits

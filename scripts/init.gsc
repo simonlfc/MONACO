@@ -20,7 +20,7 @@ init()
 
     precacheMenu("changesniper");
 
-    makeDvarServerInfo("monaco_version", 2);
+    makeDvarServerInfo("monaco_version", 3);
 
     thread scripts\game\hooks::init();
     thread scripts\game\common::init();
