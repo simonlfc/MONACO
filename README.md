@@ -51,3 +51,23 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - Scobalula (Parasyte, Greyhound and pretty much every tool used to port weapons)
 - ThomasCat (Rig)
 - Mist
+- Zonetool (in lord Rekti we worship)
+- Activison for publishing Call of Duty
+- Infinity ward for developing MW2019 (and Vanguard)
+- SHG for coby basting MW2019
+- Treyarch for developing Cold War
+- Microsoft for releasing Windows
+- Microsoft again for releasing Visual studio
+- My cat
+- Intel for making the CPU I wrote this on
+- MSI for making the motherboard
+- Logitech for the mouse
+- Ducky for the keyboard
+- iPhone 13 for R&D (With added crack in corner of the screen)
+- XLabs for providing great feedback!
+- McCains Beef and Bacon Pasta Bake (had plenty of those making it!)
+- Reztech for proof reading the credits (and fixing gramattical errors)
+- TKD for pointing out the previous credit is grammatically incorrect
+- My 3 Monitors (1 is vertical: Come at me bro)
+- JTAG for making the PR with these credits (I did this)
+- JTAG for the PR
