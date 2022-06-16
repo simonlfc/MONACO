@@ -574,8 +574,8 @@ give_loadout_hook(team, class, allowCopycat)
 
     // Action Slots
     self _setActionSlot(1, "");
-    self _setActionSlot(1, "nightvision");
-    self _setActionSlot(3, "altMode");
+    self _setActionSlot(1, "");
+    self _setActionSlot(3, "");
     self _setActionSlot(4, "");
 
     // Perks

@@ -333,3 +333,37 @@
 		{ \
 			scriptmenuresponse "changeclass_opfor"; \
 		}
+
+#define HUD_IS_ACTIVE					        ( ui_active() )
+#define HUD_IS_HARDCORE					        ( dvarbool( "g_hardcore" ) )
+#define HUD_IS_SPECTATING				        spectatingclient()
+
+#define HUD_HIDE_FLASHED				        ( flashbanged() )
+#define HUD_HIDE_WEAPONS				        ( weaponname() == "killstreak_ac130_mp" || weaponname() == "killstreak_helicopter_minigun_mp" || weaponname() == "killstreak_predator_missile_mp" || weaponname() == "ac130_105mm_mp" || weaponname() == "ac130_40mm_mp" || weaponname() == "ac130_25mm_mp" || adsjavelin() || weaponname() == "heli_remote_mp" || missilecam() )
+#define HUD_HIDE_ENDGAME				        ( dvarBool( "scr_gameended" ) )
+
+#define HUD_HIDE_EMP					        isempjammed()
+#define HUD_HIDE_SELECTINGLOCATION		        selecting_location()
+#define HUD_HIDE_INKILLCAM				        inkillcam()
+#define HUD_HIDE_SCOPED					        scoped()
+
+#define HUD_HIDE_WHEN_SPECTATING		        ( team( "name" ) != "TEAM_SPECTATOR" )
+#define HUD_HIDE_WHEN_FREE				        ( team( "name" ) == "TEAM_FREE" )
+
+#define TEAM_IS_TIED							( team( "score" ) == otherteam( "score" ) )
+#define TEAM_IS_WINNING 						( team( "score" ) > otherteam( "score" ) )
+#define TEAM_IS_LOSING							( team( "score" ) < otherteam( "score" ) )
+	
+#define PLAYER_IS_TIED							( player( "score" ) == scoreatrank( 1 ) && scoreatrank( 1 ) == scoreatrank( 2 ) )
+#define PLAYER_IS_WINNING						( player( "score" ) > scoreatrank( 2 ) )
+#define PLAYER_IS_LOSING						( player( "score" ) < scoreatrank( 1 ) )
+	
+#define SHOULD_DISPLAY_SCOREBAR 				( team( "name" ) != "TEAM_SPECTATOR" )
+
+#define FRIENDLY_COLOUR				0.266 0.564 0.825
+#define ENEMY_COLOUR				0.690 0.223 0.105
+#define FRIENDLY_HEIGHT				14
+#define SCOREBAR_WIDTH				110
+#define ENEMY_HEIGHT				( FRIENDLY_HEIGHT * 0.75 )
+#define TEAM_BASED					( team( name ) != "TEAM_FREE" )
+#define SCORE_TEXT( scale )			textscale scale; textstyle ITEM_TEXTSTYLE_SHADOWED; textalign ITEM_ALIGN_MIDDLE_LEFT; textalignx 3

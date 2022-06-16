@@ -65,12 +65,12 @@ menudef
 	SNIPER_BUTTON_WRAPPER( 2, 	0, 		"hdr", 			"WEAPON_HDR", 			"hud_hdr", 				"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 3, 	0, 		"kar98", 		"WEAPON_KAR98", 		"hud_kar98", 			"MODERN WARFARE" )
 	SNIPER_BUTTON_WRAPPER( 4, 	0, 		"tundra", 		"WEAPON_TUNDRA", 		"hud_tundra", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"pelington", 	"WEAPON_PELINGTON", 	"hud_pelington", 		"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"spr", 			"WEAPON_SPR", 			"hud_spr", 				"MODERN WARFARE" )
-	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"swiss", 		"WEAPON_SWISS", 		"hud_swiss", 			"COLD WAR" )
-	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"type99", 		"WEAPON_TYPE99", 		"hud_type99", 			"VANGUARD" )
-	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"zrg", 			"WEAPON_ZRG", 			"hud_zrg", 				"COLD WAR" )
-	//SNIPER_BUTTON_WRAPPER( 10, 	0, 		"", 				"", 					"", 					"" )
+	SNIPER_BUTTON_WRAPPER( 5, 	0, 		"mk2", 			"WEAPON_MK2", 			"hud_mk2", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 6, 	0, 		"pelington", 	"WEAPON_PELINGTON", 	"hud_pelington", 		"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 7, 	0, 		"spr", 			"WEAPON_SPR", 			"hud_spr", 				"MODERN WARFARE" )
+	SNIPER_BUTTON_WRAPPER( 8, 	0, 		"swiss", 		"WEAPON_SWISS", 		"hud_swiss", 			"COLD WAR" )
+	SNIPER_BUTTON_WRAPPER( 9, 	0, 		"type99", 		"WEAPON_TYPE99", 		"hud_type99", 			"VANGUARD" )
+	SNIPER_BUTTON_WRAPPER( 10, 	0, 		"zrg", 			"WEAPON_ZRG", 			"hud_zrg", 				"COLD WAR" )
 
 
 //	page 2				     #      page	ref					name					material						game

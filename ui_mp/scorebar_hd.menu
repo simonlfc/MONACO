@@ -1,0 +1,46 @@
+#include "ui_mp/common/redux.inc"
+#include "ui/menudef.h"
+
+#define MENU_NAME					"scorebar_hd"
+
+#define SCORE_DISPLAY( y, height, scale, colour, team_, player_ ) \
+		CREATE_SHADER( 0 y SCOREBAR_WIDTH height 8 10, "white", 0 0 0 0.3 ) \
+		CREATE_SHADER_EX( 0 y SCOREBAR_WIDTH height 8 10, "white", colour 0.75, TEAM_BASED, exp rect W ( 4 + 106 * team_ / dvarInt( "ui_scorelimit" ) ) ) \
+		CREATE_SHADER_EX( 0 y SCOREBAR_WIDTH height 8 10, "white", colour 0.75, !TEAM_BASED, exp rect W ( 4 + 106 * player_ / dvarInt( "ui_scorelimit" ) ) ) \
+		CREATE_TEXT( 0 y SCOREBAR_WIDTH height 8 10, team_, 1 1 1 1, TEAM_BASED, SCORE_TEXT( scale ); ) \
+		CREATE_TEXT( 0 y SCOREBAR_WIDTH height 8 10, player_, 1 1 1 1, !TEAM_BASED, SCORE_TEXT( scale ); ) \
+		CREATE_SHADER( 0 y SCOREBAR_WIDTH height 8 10, "white", 0 0 0 0; border 1; bordersize 0.25; bordercolor 1 1 1 0.1 ) \
+
+#define GAME_STATE( string, colour, team_vis, player_vis ) \
+		CREATE_TEXT( -3 -15 SCOREBAR_WIDTH 15 8 10, string, colour 1, ( TEAM_BASED && team_vis ) || ( !TEAM_BASED && player_vis ), SCORE_TEXT( 0.285 ) )
+
+#define GAME_TIMER( timer, colour, vis ) \
+		CREATE_TEXT( -3 -15.5 SCOREBAR_WIDTH 15 8 10, timer, colour 1, vis, SCORE_TEXT( 0.25 ); textalign ITEM_ALIGN_MIDDLE_RIGHT )
+
+#define FACTION_ICON( team_, team2 ) \
+		CREATE_SHADER_VIS( -37 -10 42 42 8 10, dvarString( "g_teamIcon_" + team_ ) + "_fade", 1 1 1 0.5, team( "name" ) == "TEAM_" + team_ || ( team( "name" ) == "TEAM_FREE" && ( localvarstring( "ui_team" ) == team2 ) ) )
+
+
+menudef
+{
+	name 							MENU_NAME
+	rect 							45 -39 640 480 4 4
+	forecolor 						1 1 1 1
+	visible when ( !HUD_HIDE_WEAPONS && !HUD_IS_ACTIVE && !HUD_IS_HARDCORE && !HUD_HIDE_ENDGAME && !HUD_HIDE_INKILLCAM && !HUD_HIDE_SELECTINGLOCATION && !HUD_HIDE_SCOPED )
+
+	FACTION_ICON( "allies", "marines" )
+	FACTION_ICON( "axis", "opfor" )
+
+	GAME_STATE( "Winning",	0.266 0.564 0.825, 		TEAM_IS_WINNING, 	PLAYER_IS_WINNING )
+	GAME_STATE( "Tied", 	1 0.823 0, 				TEAM_IS_TIED, 		PLAYER_IS_TIED )
+	GAME_STATE( "Losing", 	0.690 0.223 0.105, 		TEAM_IS_LOSING, 	PLAYER_IS_LOSING )
+
+	GAME_TIMER( secondsAsCountdown( timeLeft() ), 															1 1 1, 			timeLeft() >= 60 && !dvarBool( "ui_bomb_timer" ) )
+	GAME_TIMER( secondsAsCountdown( timeLeft() ), 															1 0.75 1, 		timeLeft() >= 30 && timeLeft() < 60 && !dvarBool( "ui_bomb_timer" ) )
+	GAME_TIMER( secondsAsCountdown( timeLeft() ) + "." + ( 9 - int( ( milliseconds() / 100 ) % 10 ) ), 		1 0.5 1, 		( timeLeft() >= 0 && timeLeft() < 30 ) || dvarBool( ui_bomb_timer ) )
+
+	CREATE_SHADER( -14 2 18 11 8 10, "hud_teamcaret", 1 1 1 1 )
+
+	SCORE_DISPLAY( 0, 							FRIENDLY_HEIGHT, 	0.35, FRIENDLY_COLOUR, 		team( score ), 			player( score ) )
+	SCORE_DISPLAY( ( FRIENDLY_HEIGHT + 1 ), 	ENEMY_HEIGHT, 		0.25, ENEMY_COLOUR, 		otherteam( score ), 	scoreatrank( 2 ) )
+}

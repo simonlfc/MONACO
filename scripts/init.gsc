@@ -6,6 +6,7 @@ init()
     level.weaponList[level.weaponList.size] = "hdr";
     level.weaponList[level.weaponList.size] = "kar98";
     level.weaponList[level.weaponList.size] = "tundra";
+    level.weaponList[level.weaponList.size] = "mk2";
     level.weaponList[level.weaponList.size] = "pelington";
     level.weaponList[level.weaponList.size] = "spr";
     level.weaponList[level.weaponList.size] = "swiss";
@@ -20,7 +21,7 @@ init()
 
     precacheMenu("changesniper");
 
-    makeDvarServerInfo("monaco_version", 3);
+    makeDvarServerInfo("monaco_version", 4);
 
     thread scripts\game\hooks::init();
     thread scripts\game\common::init();
