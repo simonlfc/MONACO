@@ -31,9 +31,9 @@ menudef
 	FACTION_ICON( "allies", "marines" )
 	FACTION_ICON( "axis", "opfor" )
 
-	GAME_STATE( "Winning",	0.266 0.564 0.825, 		TEAM_IS_WINNING, 	PLAYER_IS_WINNING )
+	GAME_STATE( "Winning",	FRIENDLY_COLOUR, 		TEAM_IS_WINNING, 	PLAYER_IS_WINNING )
 	GAME_STATE( "Tied", 	1 0.823 0, 				TEAM_IS_TIED, 		PLAYER_IS_TIED )
-	GAME_STATE( "Losing", 	0.690 0.223 0.105, 		TEAM_IS_LOSING, 	PLAYER_IS_LOSING )
+	GAME_STATE( "Losing", 	ENEMY_COLOUR, 		TEAM_IS_LOSING, 	PLAYER_IS_LOSING )
 
 	GAME_TIMER( secondsAsCountdown( timeLeft() ), 															1 1 1, 			timeLeft() >= 60 && !dvarBool( "ui_bomb_timer" ) )
 	GAME_TIMER( secondsAsCountdown( timeLeft() ), 															1 0.75 1, 		timeLeft() >= 30 && timeLeft() < 60 && !dvarBool( "ui_bomb_timer" ) )

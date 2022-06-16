@@ -5,8 +5,8 @@
 
 // yikes
 #define WEAPON_DETAILS( weapon ) \
-		CREATE_SHADER_VIS( -90 -44 64 32 10 10, "hud_" + weapon, 1 1 1 1, weaponname() == weapon + "_mp" ) \
-		CREATE_TEXT( -121 -40 100 24 10 10, "@WEAPON_" + weapon, 1 1 1 1, weaponname() == weapon + "_mp", textscale 0.25; textstyle ITEM_TEXTSTYLE_SHADOWED; textaligny -20; textalignx -2; textalign ITEM_ALIGN_MIDDLE_RIGHT )
+		CREATE_SHADER_VIS( -144 -40 64 32 10 10, "hud_" + weapon, 1 1 1 1, weaponname() == weapon + "_mp" ) \
+		CREATE_TEXT( -121 -38 100 24 10 10, "@WEAPON_" + weapon, 1 1 1 0.75, weaponname() == weapon + "_mp", textscale 0.225; textstyle ITEM_TEXTSTYLE_SHADOWED; textaligny -20; textalignx -2; textalign ITEM_ALIGN_MIDDLE_RIGHT )
 
 menudef
 {
@@ -15,13 +15,9 @@ menudef
 	forecolor 						1 1 1 1
 	visible when ( !HUD_HIDE_WEAPONS && !HUD_IS_ACTIVE && !HUD_IS_HARDCORE && !HUD_HIDE_ENDGAME && !HUD_HIDE_INKILLCAM && !HUD_HIDE_SELECTINGLOCATION && !HUD_HIDE_SCOPED )
 
-	CREATE_SHADER( -121 -40 100 24 10 10, "white", 0 0 0 0.3; border 1; bordersize 0.1; bordercolor 1 1 1 0.1 )
-	CREATE_TEXT( -121 -40 0 24 10 10, player( "clipAmmo" ), 1 1 1 1, 1, textfont 9; textscale 0.45; textstyle 3; textalignx -8; textaligny -0.5; textalign ITEM_ALIGN_MIDDLE_RIGHT )
-	CREATE_TEXT( -121 -40 100 24 10 10, player( "stockAmmo" ), 1 1 1 0.65, 1, textscale 0.25; textstyle 3; textalignx 4; textalign ITEM_ALIGN_MIDDLE_LEFT )
-
-	// DEAGLE DETAILS
-	CREATE_SHADER_VIS( -65 -41 52 26 10 10, "hud_icon_desert_eagle", 1 1 1 1, weaponname() == "deserteagle_mp" )
-	CREATE_TEXT( -121 -40 100 24 10 10, "@WEAPON_DESERTEAGLE", 1 1 1 1, weaponname() == "deserteagle_mp", textscale 0.25; textstyle ITEM_TEXTSTYLE_SHADOWED; textaligny -20; textalignx -2; textalign ITEM_ALIGN_MIDDLE_RIGHT )
+	CREATE_TEXT( -40 -34 0 18 10 10, player( "clipAmmo" ), 1 1 1 1, 1, textscale 0.55; textstyle 3; textalignx -6; textaligny -0.5; textalign ITEM_ALIGN_MIDDLE_RIGHT )
+	CREATE_SHADER( -40 -34 0.25 18 10 10, "white", 1 1 1 0.65; border 1; bordersize 0.1; bordercolor 1 1 1 0.1 )
+	CREATE_TEXT( -40 -34 100 18 10 10, player( "stockAmmo" ), 1 1 1 0.65, 1, textscale 0.25; textstyle 3; textalignx 4; textalign ITEM_ALIGN_TOP_LEFT )
 
 	WEAPON_DETAILS( "3line" )
 	WEAPON_DETAILS( "ax50" )
