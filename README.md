@@ -7,7 +7,7 @@ Server owners should use `-scriptablehttp` to receive console notifications abou
 
 If you want to use Bot Warfare, go to `scripts\game\hooks.gsc` and remove the comment from line 16.
 
-![LW3 Tundra](https://i.imgur.com/aQW158m.jpg)
+![LW3 Tundra & Custom HUD](https://i.imgur.com/dIKRs9V.jpg)
 ![3-Line Rifle](https://i.imgur.com/9JBVXDn.jpg)
 ![Sniper Menu](https://i.imgur.com/MA4tXjy.png)
 
@@ -44,13 +44,13 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - Pelington 703 drop & raise animation issues
 - ADS fire left-hand animation issues
 - Kar-98k sling clips through the left hand
-- Segmented reload start missing initial bullet notetrack
+- Segmented reload start missing initial bullet notetrack on several weapons
 - Missing some unique reticles
 
 
 ### Credits
 - Scobalula (Parasyte, Greyhound and pretty much every tool used to port weapons)
 - ThomasCat (Rig)
-- ZoneTool
+- ZoneTool (RektInator & others)
 - Activision & studios
 - Mist
