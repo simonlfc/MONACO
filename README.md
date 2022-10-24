@@ -45,6 +45,7 @@ There are several game settings you can customise in `scripts\game\hooks.gsc`.
 - Kar-98k sling clips through the left hand
 - Segmented reload start missing initial bullet notetrack on several weapons
 - Missing some unique reticles
+- Fire animation issues (this is because the original games have a much longer fire time and all our snipers are identical stat-wise)
 
 
 ### Credits
