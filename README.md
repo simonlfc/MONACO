@@ -3,13 +3,12 @@ MONACO
 
 IW4x +10 bolts-only sniper mod featuring weapons from the newest Call of Duty games only.
 
-Server owners should use `-scriptablehttp` to receive console notifications about mod updates.
-
 If you want to use Bot Warfare, go to `scripts\game\hooks.gsc` and remove the comment from line 16.
 
-![LW3 Tundra & Custom HUD](https://i.imgur.com/dIKRs9V.jpg)
-![3-Line Rifle](https://i.imgur.com/9JBVXDn.jpg)
-![Sniper Menu](https://i.imgur.com/MA4tXjy.png)
+![LW3 Tundra (Cold War)](https://i.imgur.com/Yz0oZ5f.png)
+![AX-50 (Modern Warfare)](https://i.imgur.com/Zb8ep7n.jpg)
+![Type 99 (Vanguard)](https://i.imgur.com/VNxA0e9.png)
+![Sniper Menu](https://i.imgur.com/m4uJXR8.png)
 
 ### Customisation
 
